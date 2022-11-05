@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class MainMenuView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [HideInInspector]
+    public UIController Controller = null;
+
+    public void Init(UIController controller)
     {
-        
+        Controller = controller;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnStartPressed()
     {
-        
+        Controller.Controller.StartGame();
+    }
+
+    public void OnQuitPressed()
+    {
+        Application.Quit();
     }
 }
