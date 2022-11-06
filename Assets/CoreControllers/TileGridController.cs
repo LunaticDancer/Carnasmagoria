@@ -27,8 +27,18 @@ public class TileGridController : MonoBehaviour
             {
                 tileArray[x, y] = Instantiate(tilePrefab, transform).GetComponent<Tile>();
                 tileArray[x, y].transform.position = new Vector2(x, y);
+                if (layout[x, y]) // if there's supposed to be a wall on this tile, create a wall
+                {
+                    AttachEntity(new Vector2Int(x, y), Instantiate(wallPrefab).GetComponent<Entity>());
+                }
                 tileArray[x, y].Init();
             }
         }
+    }
+
+    public void AttachEntity(Vector2Int coordinates, Entity newEntity)
+    {
+        newEntity.SetTile(tileArray[coordinates.x, coordinates.y]);
+        tileArray[coordinates.x, coordinates.y].AttachEntity(newEntity);
     }
 }

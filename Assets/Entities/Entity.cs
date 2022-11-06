@@ -36,5 +36,7 @@ public class Entity : MonoBehaviour
     public void SetTile(Tile newTile)
     {
         currentTile = newTile;
+        transform.parent = newTile.transform;
+        transform.position = newTile.transform.position;
     }
 }

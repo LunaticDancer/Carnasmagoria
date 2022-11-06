@@ -18,7 +18,17 @@ public class Tile : MonoBehaviour
 
 	public void UpdateVisuals()
 	{
-        SetAsRandomGroundTile();
+        Entity priorityEntity = FindHighestRenderingPriorityEntity();
+        if (priorityEntity)
+        {
+            SetCharacter(priorityEntity.Symbol);
+            SetColor(priorityEntity.BackgroundColor);
+            SetCharacterColor(priorityEntity.SymbolColor);
+        }
+        else
+        {
+            SetAsRandomGroundTile();
+        }
 	}
 
     public void SetAsRandomGroundTile()
@@ -26,6 +36,25 @@ public class Tile : MonoBehaviour
         SetCharacter('.');
         SetColor(new Color(1f, 0.5f, 0.5f));
         SetCharacterColor(new Color(0.5f, 0, 0));
+    }
+
+    private Entity FindHighestRenderingPriorityEntity()
+    {
+        Entity result = null;
+
+        if (entities.Count > 0)
+        {
+            int currentPriority = -9999;
+            foreach (Entity entity in entities)
+            {
+                if (entity.RenderPriority > currentPriority)
+                {
+                    result = entity;
+                }
+            }
+        }
+
+        return result;
     }
 
 	public void SetCharacter(char character)
@@ -48,5 +77,10 @@ public class Tile : MonoBehaviour
         {
             background.color = newColor;
         }
+    }
+
+    public void AttachEntity(Entity newEntity)
+    {
+        entities.Add(newEntity);
     }
 }
