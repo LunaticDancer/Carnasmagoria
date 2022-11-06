@@ -14,7 +14,7 @@ public class MainMenuView : MonoBehaviour
 
     public void OnStartPressed()
     {
-        Controller.Controller.StartGame();
+        GameController.Instance.StartGame();
     }
 
     public void OnQuitPressed()

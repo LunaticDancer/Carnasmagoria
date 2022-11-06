@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public static GameController Instance;
+
     [SerializeField]
     private GameObject UIControllerPrefab = null;
     [HideInInspector]
@@ -24,9 +26,19 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        DataController = Instantiate(DataControllerPrefab, this.transform).GetComponent<DataController>();
-        UIController = Instantiate(UIControllerPrefab, this.transform).GetComponent<UIController>();
-        WorldController = Instantiate(WorldControllerPrefab, this.transform).GetComponent<WorldController>();
+        // making sure there are no duplicates of the Singleton
+        if (Instance)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
+        DataController = Instantiate(DataControllerPrefab, transform).GetComponent<DataController>();
+        UIController = Instantiate(UIControllerPrefab, transform).GetComponent<UIController>();
+        WorldController = Instantiate(WorldControllerPrefab, transform).GetComponent<WorldController>();
 
         DataController.Init(this);
         UIController.Init(this);

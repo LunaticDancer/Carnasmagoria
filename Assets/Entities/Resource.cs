@@ -12,7 +12,8 @@ public class Resource : Item
         BrainMatter,
         Metal,
         Electronics,
-        Fuel
+        Fuel,
+        Energy
     }
 
     [SerializeField] private ResourceTypes resourceType = ResourceTypes.Blood;
