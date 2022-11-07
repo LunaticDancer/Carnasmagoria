@@ -185,3 +185,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
   tilePrefab: {fileID: 122524802833312170, guid: 849e0c6e027ba194cb7a8183fb281dd8, type: 3}
+  indestructibleWallPrefab: {fileID: 3976017943781511379, guid: 1716cc35709c9844a9b554b0dd4a4b4b, type: 3}

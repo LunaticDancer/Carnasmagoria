@@ -8,6 +8,7 @@ public class TileGridController : MonoBehaviour
     public WorldController Controller = null;
 
     [SerializeField] private GameObject tilePrefab = null;
+    [SerializeField] private GameObject indestructibleWallPrefab = null;
     private Tile[,] tileArray = null;
 
     public Tile[,] TileArray { get => tileArray; }
@@ -33,6 +34,28 @@ public class TileGridController : MonoBehaviour
                 }
                 tileArray[x, y].Init();
             }
+        }
+        CreateIndestructibleEdges();
+    }
+
+    private void CreateIndestructibleEdges()
+    {
+        int extremeX = tileArray.GetLength(0);
+        int extremeY = tileArray.GetLength(1);
+        for (int x = 0; x < extremeX; x++)
+        {
+            AttachEntity(new Vector2Int(x, 0), Instantiate(indestructibleWallPrefab).GetComponent<Entity>());
+            tileArray[x, 0].UpdateVisuals();
+            AttachEntity(new Vector2Int(x, extremeY-1), Instantiate(indestructibleWallPrefab).GetComponent<Entity>());
+            tileArray[x, extremeY-1].UpdateVisuals();
+        }
+        extremeY--; // the goal of this is to prevent repeated "extremeY - 1" operations in the loop, since the variable will not be used anymore either way
+        for (int y = 1; y < extremeY; y++)
+        {
+            AttachEntity(new Vector2Int(0, y), Instantiate(indestructibleWallPrefab).GetComponent<Entity>());
+            tileArray[0, y].UpdateVisuals();
+            AttachEntity(new Vector2Int(extremeX-1, y), Instantiate(indestructibleWallPrefab).GetComponent<Entity>());
+            tileArray[extremeX-1, y].UpdateVisuals();
         }
     }
 

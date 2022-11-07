@@ -52,5 +52,5 @@ MonoBehaviour:
   nameLabel: Indestructible Wall
   flavorDescription: An impenetrable wall of flesh and bone. Impossible to destroy.
   symbol: 35
-  symbolColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  symbolColor: {r: 1, g: 1, b: 1, a: 1}
   backgroundColor: {r: 0.5, g: 0, b: 0, a: 1}

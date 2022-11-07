@@ -33,9 +33,24 @@ public class Tile : MonoBehaviour
 
     public void SetAsRandomGroundTile()
     {
-        SetCharacter('.');
-        SetColor(new Color(1f, 0.5f, 0.5f));
-        SetCharacterColor(new Color(0.5f, 0, 0));
+        int decideCharacter = Random.Range(0, 8);
+        switch (decideCharacter)
+        {
+            case 0:
+                SetCharacter(':');
+                break;
+            case 1:
+                SetCharacter(',');
+                break;
+            case 2:
+                SetCharacter('*');
+                break;
+            default:
+                SetCharacter('.');
+                break;
+        }
+        SetColor(Color.magenta);
+        SetCharacterColor(new Color(1f, 0.3f, 0.3f));
     }
 
     private Entity FindHighestRenderingPriorityEntity()
