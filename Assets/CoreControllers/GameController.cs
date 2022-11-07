@@ -47,7 +47,15 @@ public class GameController : MonoBehaviour
         UIController.SetMainMenuVisibility(true);
     }
 
-    public void StartGame()
+	private void Update()
+	{
+        if (WorldController.isThePlayerAlive)
+        {
+            WorldController.TurnHandler.UpdateTurnFlow();
+        }
+	}
+
+	public void StartGame()
     {
         UIController.SetMainMenuVisibility(false);
         WorldController.PrepareWorld();

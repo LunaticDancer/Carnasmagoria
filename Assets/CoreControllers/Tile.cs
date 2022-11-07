@@ -98,4 +98,8 @@ public class Tile : MonoBehaviour
     {
         entities.Add(newEntity);
     }
+    public void DettachEntity(Entity entity)
+    {
+        entities.Remove(entity);
+    }
 }

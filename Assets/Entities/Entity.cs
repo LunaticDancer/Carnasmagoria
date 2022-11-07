@@ -9,8 +9,8 @@ public class Entity : MonoBehaviour
     [Header("Basic Interactability Properties")]
     private Tile currentTile = null;
     [SerializeField] private bool isDestructible = true;
-    [SerializeField] private bool isVisible = true;
-    [SerializeField] private bool isVisionObstacle = false;
+    [SerializeField] protected bool isVisible = true;
+    [SerializeField] protected bool isVisionObstacle = false;
     [SerializeField] private bool isPassable = true;
     [SerializeField] private bool isOrganic = true;
     [Header("Display Properties")]

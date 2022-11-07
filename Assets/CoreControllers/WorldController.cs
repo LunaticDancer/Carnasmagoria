@@ -10,6 +10,7 @@ public class WorldController : MonoBehaviour
     public GameController Controller = null;
 
     private int currentLevel = 0;
+    public bool isThePlayerAlive = false;
 
     public TileGridController TileGridController = null;
     public LevelGenerator LevelGenerator = null;
@@ -26,5 +27,6 @@ public class WorldController : MonoBehaviour
     public void PrepareWorld()
     {
         LevelGenerator.GenerateLevelLayout(currentLevel);
+        isThePlayerAlive = true;
     }
 }

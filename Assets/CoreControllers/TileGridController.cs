@@ -66,9 +66,27 @@ public class TileGridController : MonoBehaviour
         Controller.TurnHandler.AddCreature(spawned);
     }
 
+    public void MoveEntity(Vector2Int newCoordinates, Entity entity)
+    {
+        entity.CurrentTile.DettachEntity(entity);
+        AttachEntity(newCoordinates, entity);
+    }
+
+    public void MoveEntity(Tile newTile, Entity entity)
+    {
+        entity.CurrentTile.DettachEntity(entity);
+        AttachEntity(newTile, entity);
+    }
+
     public void AttachEntity(Vector2Int coordinates, Entity newEntity)
     {
         newEntity.SetTile(tileArray[coordinates.x, coordinates.y]);
         tileArray[coordinates.x, coordinates.y].AttachEntity(newEntity);
+    }
+
+    public void AttachEntity(Tile tile, Entity newEntity)
+    {
+        newEntity.SetTile(tile);
+        tile.AttachEntity(newEntity);
     }
 }

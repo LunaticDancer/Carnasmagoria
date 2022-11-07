@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : Entity
 {
-    [SerializeField] private float mass = 1;
+    [SerializeField] protected float mass = 1;
 
     [HideInInspector] public float Mass { get => mass; }
 }

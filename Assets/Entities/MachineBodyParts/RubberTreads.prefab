@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3976017943781511379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3976017943781511377}
+  - component: {fileID: 1165030508613850992}
+  m_Layer: 0
+  m_Name: RubberTreads
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3976017943781511377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976017943781511379}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1165030508613850992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976017943781511379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3695f02a1d7c0974b91d2391bfde8fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDestructible: 1
+  isVisible: 1
+  isVisionObstacle: 0
+  isPassable: 1
+  isOrganic: 0
+  renderPriority: -5
+  nameLabel: Rubber Treads
+  flavorDescription: A pair of reliable belts rotated around by wheels. A slow but
+    steady method of ground transportation.
+  symbol: 91
+  symbolColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
+  backgroundColor: {r: 1, g: 0, b: 1, a: 1}
+  mass: 1
+  attachedTo: {fileID: 0}
+  bodyStructureCost: 3
+  abilities:
+  - {fileID: 11400000, guid: c2a9577952276144fb7676483bbdf7c3, type: 2}
+  dependentBodyParts: []
+  carryCapacityExtension: 0

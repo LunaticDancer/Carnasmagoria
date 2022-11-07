@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463e08ff7d7633f4ea2dbd6ec5cdbade, type: 3}
+  m_Name: RubberTreadMovement
+  m_EditorClassIdentifier: 
+  range: 1
+  timeCost: 1
+  aimingMode: 1
+  triggerList: 00000000
+  aiFlagList: 00000000
+  resourceCosts:
+  - ResourceType: 7
+    Amount: 3

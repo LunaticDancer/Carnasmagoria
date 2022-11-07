@@ -19,4 +19,9 @@ public class Resource : Item
     [SerializeField] private ResourceTypes resourceType = ResourceTypes.Blood;
 
     [HideInInspector] public ResourceTypes ResourceType { get => resourceType; }
+
+    public void SetAmount(float amount)
+    {
+        mass = amount;
+    }
 }
