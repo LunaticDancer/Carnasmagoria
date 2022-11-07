@@ -7,6 +7,7 @@ public class LevelGenerator : MonoBehaviour
     [HideInInspector]
     public WorldController Controller = null;
 
+    [SerializeField] private GameObject playerPrefab = null;
     [SerializeField] private LevelData[] levels = null;
 
     public void Init(WorldController controller)
@@ -24,6 +25,11 @@ public class LevelGenerator : MonoBehaviour
         }
 
         Controller.TileGridController.FillWithLayout(layout, levels[targetLevel].DefaultWallPrefab);
+
+        Vector2Int playerSpawnCoordinates = new Vector2Int(Mathf.FloorToInt(levels[targetLevel].LevelSize.x / 2), 
+            Mathf.FloorToInt(levels[targetLevel].LevelSize.x / 2));
+        Controller.TileGridController.SpawnCreature(playerSpawnCoordinates, playerPrefab);
+        Controller.TileGridController.TileArray[playerSpawnCoordinates.x, playerSpawnCoordinates.y].UpdateVisuals();
     }
 
     public bool[,] GenerateWithMarchingSquare(Vector2Int size, float emptinessRatio)

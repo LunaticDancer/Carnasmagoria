@@ -59,6 +59,13 @@ public class TileGridController : MonoBehaviour
         }
     }
 
+    public void SpawnCreature(Vector2Int coordinates, GameObject creature)
+    {
+        Creature spawned = Instantiate(creature).GetComponent<Creature>();
+        AttachEntity(coordinates, spawned);
+        Controller.TurnHandler.AddCreature(spawned);
+    }
+
     public void AttachEntity(Vector2Int coordinates, Entity newEntity)
     {
         newEntity.SetTile(tileArray[coordinates.x, coordinates.y]);

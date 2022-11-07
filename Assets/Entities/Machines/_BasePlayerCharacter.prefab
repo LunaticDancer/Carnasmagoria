@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3976017943781511379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3976017943781511377}
+  - component: {fileID: 7567329440372644255}
+  m_Layer: 0
+  m_Name: _BasePlayerCharacter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3976017943781511377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976017943781511379}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7567329440372644255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976017943781511379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0144986dec952c4fa92d662dda364ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDestructible: 1
+  isVisible: 1
+  isVisionObstacle: 0
+  isPassable: 0
+  isOrganic: 0
+  renderPriority: 0
+  nameLabel: Exploration Drone
+  flavorDescription: An inautonomous machine controlled by the central intelligence,
+    tasked with delving deeper into the mysterious cavities of the flesh planet,
+    and gathering resources necessary for the hivemind's expansion.
+  symbol: 64
+  symbolColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
+  backgroundColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+  isUnderPlayerControl: 1
+  currentHealth: 100
+  maxHealth: 100
+  turnTimer: 0.1
+  hostilityMode: 1
+  carryCapacity: 10
+  bodyStructureBudget: 10
+  bodyParts: []

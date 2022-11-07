@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
+  playerPrefab: {fileID: 3976017943781511379, guid: 25ed3a69e1d601e458386fe2475b356d, type: 3}
   levels:
   - {fileID: 11400000, guid: a4013bd50e46b734c930102c2791ebc1, type: 2}
 --- !u!1 &6365442285123335172
