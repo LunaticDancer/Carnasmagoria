@@ -40,7 +40,7 @@ public class Tile : MonoBehaviour
 
     public void SetAsRandomGroundTile()
     {
-        int decideCharacter = Random.Range(0, 10);
+        int decideCharacter = Random.Range(0, 7);
         switch (decideCharacter)
         {
             case 0:

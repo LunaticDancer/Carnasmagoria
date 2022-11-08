@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public WorldController WorldController = null;
 
+    public CameraController CameraController = null;
+
     void Start()
     {
         // making sure there are no duplicates of the Singleton

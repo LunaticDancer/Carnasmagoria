@@ -71,6 +71,7 @@ public class Creature : Entity
     {
         if (isUnderPlayerControl)
         {
+            GameController.Instance.CameraController.SetFollowTarget(transform);
             if (primaryMovementAbility)
             {
                 GameController.Instance.WorldController.TurnHandler.InputHandler.StartAiming(this, primaryMovementAbility);

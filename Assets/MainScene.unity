@@ -173,6 +173,7 @@ MonoBehaviour:
   DataController: {fileID: 0}
   WorldControllerPrefab: {fileID: 6365442285123335172, guid: 3d21e4a7e12a9904981bededb1f71b8c, type: 3}
   WorldController: {fileID: 0}
+  CameraController: {fileID: 1401760779}
 --- !u!1 &1401760777
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1401760778}
+  - component: {fileID: 1401760779}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -204,6 +206,20 @@ Transform:
   m_Father: {fileID: 316006391}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1401760779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401760777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d3f5d4f56190547833e1d049c21fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 0}
+  followLerpSpeed: 4
 --- !u!1 &1553529668
 GameObject:
   m_ObjectHideFlags: 0
