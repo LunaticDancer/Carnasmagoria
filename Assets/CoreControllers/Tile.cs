@@ -6,12 +6,16 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer background = null;
     [SerializeField] private UnityEngine.UI.Text characterDisplay = null;
+    private bool blocksVision = false;
+    private bool blocksMovement = false;
 
     private List<Entity> entities = new List<Entity>();
     private Vector2Int gridPosition;
 
     public List<Entity> Entities { get => entities; }
     public Vector2Int GridPosition { get => gridPosition; }
+    public bool BlocksVision { get => blocksVision; }
+    public bool BlocksMovement { get => blocksMovement; }
 
     public void Init(Vector2Int position)
     {
@@ -36,7 +40,7 @@ public class Tile : MonoBehaviour
 
     public void SetAsRandomGroundTile()
     {
-        int decideCharacter = Random.Range(0, 8);
+        int decideCharacter = Random.Range(0, 10);
         switch (decideCharacter)
         {
             case 0:
@@ -100,9 +104,33 @@ public class Tile : MonoBehaviour
     public void AttachEntity(Entity newEntity)
     {
         entities.Add(newEntity);
+        UpdateVisuals();
+        blocksVision = CheckIfBlocksVision();
+        blocksMovement = CheckIfBlocksMovement();
     }
     public void DettachEntity(Entity entity)
     {
         entities.Remove(entity);
+        UpdateVisuals();
+        blocksVision = CheckIfBlocksVision();
+        blocksMovement = CheckIfBlocksMovement();
+    }
+
+    private bool CheckIfBlocksVision()
+    {
+        if (System.Array.Exists(entities.ToArray(), element => element.IsVisionObstacle))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool CheckIfBlocksMovement()
+    {
+        if (System.Array.Exists(entities.ToArray(), element => !element.IsPassable))
+        {
+            return true;
+        }
+        return false;
     }
 }

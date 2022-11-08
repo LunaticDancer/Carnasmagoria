@@ -65,7 +65,7 @@ public class InputHandler : MonoBehaviour
         int spaceCounter = 0;
         while (spaceCounter < aimedAbility.Range)
         {
-            if (GameController.Instance.WorldController.TileGridController.IsPointInBounds(TargetTileCoords + aimVector))
+            if (GameController.Instance.WorldController.TileGridController.IsPointLegalToCast(TargetTileCoords + aimVector, aimedAbility.CaresForVision, aimedAbility.CaresForCollision))
             {
                 TargetTileCoords += aimVector;
             }
@@ -76,7 +76,6 @@ public class InputHandler : MonoBehaviour
             spaceCounter++;
         }
         aimedAbility.Cast(playerAbilityCaster, GameController.Instance.WorldController.TileGridController.TileArray[TargetTileCoords.x, TargetTileCoords.y]);
-        GameController.Instance.WorldController.TileGridController.UpdateGridVisuals();
     }
 
     public void StartAiming(Creature caster, Ability ability)

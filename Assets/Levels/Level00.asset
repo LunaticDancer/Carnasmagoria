@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelSize: {x: 50, y: 50}
   GenerationType: 2
-  DefaultWallPrefab: {fileID: 3976017943781511379, guid: 1716cc35709c9844a9b554b0dd4a4b4b, type: 3}
+  DefaultWallPrefab: {fileID: 3976017943781511379, guid: a774c323cbd487b4d9d3e059a326fe8d, type: 3}
   monsterBudget: 0
   EnemySpawningOdds: []

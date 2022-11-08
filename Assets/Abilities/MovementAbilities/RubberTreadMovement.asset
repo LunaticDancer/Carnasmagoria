@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463e08ff7d7633f4ea2dbd6ec5cdbade, type: 3}
   m_Name: RubberTreadMovement
   m_EditorClassIdentifier: 
+  caresForVision: 0
+  caresForCollision: 1
   range: 1
   timeCost: 1
   aimingMode: 1

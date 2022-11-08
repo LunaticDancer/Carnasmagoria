@@ -8,9 +8,7 @@ public class Ability : ScriptableObject
     {
         NoAiming,
         EightDirections,
-        FreeAim,
-        FreeAimOnlyVisible,
-        FreeAimOnlyVisibleAndPassable
+        FreeAim
     }
 
     public enum AbilityTriggers
@@ -37,6 +35,8 @@ public class Ability : ScriptableObject
         public float Amount;
     }
 
+    [SerializeField] private bool caresForVision = false;
+    [SerializeField] private bool caresForCollision = false;
     [SerializeField] private int range = 1;
     [SerializeField] private float timeCost = 1; // 0 time cost abilities don't end the turn
     [SerializeField] private AimingModes aimingMode = AimingModes.NoAiming;
@@ -44,6 +44,8 @@ public class Ability : ScriptableObject
     [SerializeField] private AbilityAiFlags[] aiFlagList = { };
     [SerializeField] private ResourceCost[] resourceCosts = null;
 
+    [HideInInspector] public bool CaresForVision { get => caresForVision; }
+    [HideInInspector] public bool CaresForCollision { get => caresForCollision; }
     [HideInInspector] public int Range { get => range; }
     [HideInInspector] public float TimeCost { get => timeCost; }
     [HideInInspector] public AimingModes AimingMode { get => aimingMode; }

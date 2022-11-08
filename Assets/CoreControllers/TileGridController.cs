@@ -99,6 +99,19 @@ public class TileGridController : MonoBehaviour
         tile.AttachEntity(newEntity);
     }
 
+    public bool IsPointLegalToCast(Vector2Int coordinates, bool caresForVision, bool caresForCollision)
+    {
+        if (IsPointInBounds(coordinates))
+        {
+            if (caresForCollision && tileArray[coordinates.x, coordinates.y].BlocksMovement)
+            {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
     public bool IsPointInBounds(Vector2Int coordinates)
     {
         if (coordinates.x > 0) // handled as an if cascade to minimize the number of checks executed
