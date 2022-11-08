@@ -53,7 +53,7 @@ public class Tile : MonoBehaviour
                 break;
         }
         SetColor(Color.magenta);
-        SetCharacterColor(new Color(1f, 0.3f, 0.3f));
+        SetCharacterColor(new Color(0.5f, 0.25f, 0.25f));
     }
 
     private Entity FindHighestRenderingPriorityEntity()

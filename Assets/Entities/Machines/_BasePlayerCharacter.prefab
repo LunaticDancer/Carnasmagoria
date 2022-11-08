@@ -55,13 +55,14 @@ MonoBehaviour:
     tasked with delving deeper into the mysterious cavities of the flesh planet,
     and gathering resources necessary for the hivemind's expansion.
   symbol: 64
-  symbolColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
-  backgroundColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+  symbolColor: {r: 1, g: 1, b: 1, a: 1}
+  backgroundColor: {r: 0.5019608, g: 0.2509804, b: 0.2509804, a: 1}
   isUnderPlayerControl: 1
   currentHealth: 100
   maxHealth: 100
   turnTimer: 0.1
   hostilityMode: 1
+  alliedToCreaturesWith: 
   carryCapacity: 10
   bodyStructureBudget: 10
   bodyParts:
