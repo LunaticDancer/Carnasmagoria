@@ -8,11 +8,14 @@ public class Tile : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Text characterDisplay = null;
 
     private List<Entity> entities = new List<Entity>();
+    private Vector2Int gridPosition;
 
     public List<Entity> Entities { get => entities; }
+    public Vector2Int GridPosition { get => gridPosition; }
 
-    public void Init()
+    public void Init(Vector2Int position)
     {
+        gridPosition = position;
         UpdateVisuals();
     }
 

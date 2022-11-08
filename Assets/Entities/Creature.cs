@@ -73,7 +73,7 @@ public class Creature : Entity
         {
             if (primaryMovementAbility)
             {
-                // start aiming the primary movement ability
+                GameController.Instance.WorldController.TurnHandler.InputHandler.StartAiming(this, primaryMovementAbility);
             }
         }
     }

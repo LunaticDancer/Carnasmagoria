@@ -18,6 +18,14 @@ public class TileGridController : MonoBehaviour
         Controller = controller;
     }
 
+    public void UpdateGridVisuals()
+    {
+        foreach (Tile tile in tileArray)
+        {
+            tile.UpdateVisuals();
+        }
+    }
+
     public void FillWithLayout(bool[,] layout, GameObject wallPrefab)
     {
         tileArray = new Tile[layout.GetLength(0), layout.GetLength(1)];
@@ -32,7 +40,7 @@ public class TileGridController : MonoBehaviour
                 {
                     AttachEntity(new Vector2Int(x, y), Instantiate(wallPrefab).GetComponent<Entity>());
                 }
-                tileArray[x, y].Init();
+                tileArray[x, y].Init(new Vector2Int(x, y));
             }
         }
         CreateIndestructibleEdges();
@@ -63,6 +71,7 @@ public class TileGridController : MonoBehaviour
     {
         Creature spawned = Instantiate(creature).GetComponent<Creature>();
         AttachEntity(coordinates, spawned);
+        spawned.Init();
         Controller.TurnHandler.AddCreature(spawned);
     }
 
@@ -88,5 +97,23 @@ public class TileGridController : MonoBehaviour
     {
         newEntity.SetTile(tile);
         tile.AttachEntity(newEntity);
+    }
+
+    public bool IsPointInBounds(Vector2Int coordinates)
+    {
+        if (coordinates.x > 0) // handled as an if cascade to minimize the number of checks executed
+        {
+            if (coordinates.y > 0)
+            {
+                if (coordinates.x < tileArray.GetLength(0) - 1)
+                {
+                    if (coordinates.y < tileArray.GetLength(1) - 1)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

@@ -7,12 +7,15 @@ public class TurnHandler : MonoBehaviour
     [HideInInspector]
     public WorldController Controller = null;
 
+    public InputHandler InputHandler = null;
+
     private List<Creature> turnTakers = new List<Creature>();
     private Creature currentCreature = null;
 
     public void Init(WorldController controller)
     {
         Controller = controller;
+        InputHandler.Init(this);
     }
 
     public void UpdateTurnFlow()
@@ -21,7 +24,7 @@ public class TurnHandler : MonoBehaviour
         {
             if (currentCreature.IsUnderPlayerControl && currentCreature.TurnTimer <= 0)
             {
-                HandlePlayerInput();
+                InputHandler.HandlePlayerInput();
             }
             else
             {
@@ -32,11 +35,6 @@ public class TurnHandler : MonoBehaviour
         {
             ActivateCreatureWithNearestTurn();
         }
-    }
-
-    private void HandlePlayerInput()
-    {
-        // a state machine here later
     }
 
     private void ActivateCreatureWithNearestTurn()
