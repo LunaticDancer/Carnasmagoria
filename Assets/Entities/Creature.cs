@@ -24,6 +24,7 @@ public class Creature : Entity
     [SerializeField] private bool isUnderPlayerControl = false;
     [SerializeField] private int currentHealth = 100;
     [SerializeField] private int maxHealth = 100;
+    [SerializeField] private float visionRange = 1;
     [SerializeField] private float turnTimer = 1;
     [SerializeField] private HostilitySettings hostilityMode = HostilitySettings.Neutral;
     [SerializeField] private HostilitySettings[] alliedToCreaturesWith = { };
@@ -53,6 +54,7 @@ public class Creature : Entity
             }
         }
     }
+    [HideInInspector] public float VisionRange { get => visionRange; }
     [HideInInspector] public float TurnTimer { get => turnTimer; }
     [HideInInspector] public HostilitySettings HostilityMode { get => hostilityMode; }
     [HideInInspector] public HostilitySettings[] AlliedToCreaturesWith { get => alliedToCreaturesWith; }
@@ -99,9 +101,12 @@ public class Creature : Entity
     {
         foreach (Ability ability in availableAbilityList)
         {
-            if (System.Array.Exists(ability.AiFlagList, element => element is Ability.AbilityAiFlags.MovesSelf))
+            if (System.Array.Exists(ability.AiFlagList, element => element is Ability.AbilityAiFlags.MovesSelf)) // if is a movement ability
             {
-                return ability;
+                if (System.Array.Exists(ability.TriggerList, element => element is Ability.AbilityTriggers.OnUse)) // if can be manually used
+                {
+                    return ability;
+                }
             }
         }
         return null;
@@ -113,7 +118,10 @@ public class Creature : Entity
         {
             if (System.Array.Exists(ability.AiFlagList, element => element is Ability.AbilityAiFlags.Damages))
             {
-                return ability;
+                if (System.Array.Exists(ability.TriggerList, element => element is Ability.AbilityTriggers.OnUse))
+                {
+                    return ability;
+                }
             }
         }
         return null;
@@ -138,5 +146,17 @@ public class Creature : Entity
     public void LowerTurnTimer(float amount)
     {
         turnTimer -= amount;
+    }
+
+    public void SetVisionRange(float range, bool forceOverwrite)
+    {
+        if (!forceOverwrite)
+        {
+            if (range < visionRange) // if not forced to overwrite, the function favors the greater of the two values (useful in case of the player having multiple eyes)
+            {
+                return;
+            }
+        }
+        visionRange = range;
     }
 }

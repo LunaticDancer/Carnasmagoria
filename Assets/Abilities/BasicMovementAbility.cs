@@ -8,6 +8,7 @@ public class BasicMovementAbility : Ability
 	public override bool Cast(Creature caster, Tile target)
 	{
 		GameController.Instance.WorldController.TileGridController.MoveEntity(target, caster);
+		GameController.Instance.WorldController.TileGridController.UpdateGridVisuals();
 		return true;
 	}
 }

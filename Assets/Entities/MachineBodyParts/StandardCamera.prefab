@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3976017943781511377}
   - component: {fileID: 1165030508613850992}
   m_Layer: 0
-  m_Name: RubberTreads
+  m_Name: StandardCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,16 +49,16 @@ MonoBehaviour:
   isPassable: 1
   isOrganic: 0
   renderPriority: -5
-  nameLabel: Rubber Treads
-  flavorDescription: A pair of reliable belts rotated around by wheels. A slow but
-    steady method of ground transportation.
+  nameLabel: Standard Issue Camera
+  flavorDescription: A photosensitive sensory apparatus, as standard as it gets.
+    Allows the perception of shapes and colors.
   symbol: 91
   symbolColor: {r: 0.25, g: 0.1875, b: 0.1875, a: 1}
   backgroundColor: {r: 1, g: 0, b: 1, a: 1}
   mass: 1
   attachedTo: {fileID: 0}
-  bodyStructureCost: 3
+  bodyStructureCost: 1
   abilities:
-  - {fileID: 11400000, guid: c2a9577952276144fb7676483bbdf7c3, type: 2}
+  - {fileID: 11400000, guid: baa2793c2febf0c4b8cc0b3d554a23bd, type: 2}
   dependentBodyParts: []
   carryCapacityExtension: 0

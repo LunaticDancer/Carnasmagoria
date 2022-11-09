@@ -77,4 +77,17 @@ public class TurnHandler : MonoBehaviour
     {
         turnTakers.Remove(creature);
     }
+
+    public List<Creature> GetPlayerVisionSources()
+    {
+        List<Creature> result = new List<Creature>();
+        foreach (Creature creature in turnTakers)
+        {
+            if (creature.IsUnderPlayerControl)
+            {
+                result.Add(creature);
+            }
+        }
+        return result;
+    }
 }

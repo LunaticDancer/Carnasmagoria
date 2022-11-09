@@ -17,7 +17,11 @@ public class Ability : ScriptableObject
         OnTurnStart,
         OnMove,
         OnReceiveDamage,
-        OnDeath
+        OnDeath,
+        OnAttachThisBodyPart,
+        OnDetachThisBodyPart,
+        OnAttachAnyBodyPart,
+        OnDetachAnyBodyPart
     }
 
     public enum AbilityAiFlags
@@ -35,14 +39,14 @@ public class Ability : ScriptableObject
         public float Amount;
     }
 
-    [SerializeField] private bool caresForVision = false;
-    [SerializeField] private bool caresForCollision = false;
-    [SerializeField] private int range = 1;
-    [SerializeField] private float timeCost = 1; // 0 time cost abilities don't end the turn
-    [SerializeField] private AimingModes aimingMode = AimingModes.NoAiming;
-    [SerializeField] private AbilityTriggers[] triggerList = { };
-    [SerializeField] private AbilityAiFlags[] aiFlagList = { };
-    [SerializeField] private ResourceCost[] resourceCosts = null;
+    [SerializeField] protected bool caresForVision = false;
+    [SerializeField] protected bool caresForCollision = false;
+    [SerializeField] protected int range = 1;
+    [SerializeField] protected float timeCost = 1; // 0 time cost abilities don't end the turn
+    [SerializeField] protected AimingModes aimingMode = AimingModes.NoAiming;
+    [SerializeField] protected AbilityTriggers[] triggerList = { };
+    [SerializeField] protected AbilityAiFlags[] aiFlagList = { };
+    [SerializeField] protected ResourceCost[] resourceCosts = null;
 
     [HideInInspector] public bool CaresForVision { get => caresForVision; }
     [HideInInspector] public bool CaresForCollision { get => caresForCollision; }

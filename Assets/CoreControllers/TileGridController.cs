@@ -10,6 +10,7 @@ public class TileGridController : MonoBehaviour
     [SerializeField] private GameObject tilePrefab = null;
     [SerializeField] private GameObject indestructibleWallPrefab = null;
     private Tile[,] tileArray = null;
+    private List<Creature> playerCameras = new List<Creature>();
 
     public Tile[,] TileArray { get => tileArray; }
 
@@ -20,10 +21,23 @@ public class TileGridController : MonoBehaviour
 
     public void UpdateGridVisuals()
     {
+        playerCameras = Controller.TurnHandler.GetPlayerVisionSources();
         foreach (Tile tile in tileArray)
         {
             tile.UpdateVisuals();
         }
+    }
+
+    public bool IsTileInPlayerVision(Tile tile)
+    {
+        foreach (Creature source in playerCameras)
+        {
+            if (Vector2.Distance(tile.transform.position, source.transform.position) <= source.VisionRange)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void FillWithLayout(bool[,] layout, GameObject wallPrefab)

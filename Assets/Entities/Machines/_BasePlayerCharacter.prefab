@@ -60,6 +60,7 @@ MonoBehaviour:
   isUnderPlayerControl: 1
   currentHealth: 100
   maxHealth: 100
+  visionRange: 6
   turnTimer: 0.1
   hostilityMode: 1
   alliedToCreaturesWith: 

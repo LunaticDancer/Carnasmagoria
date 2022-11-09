@@ -29,7 +29,8 @@ public class LevelGenerator : MonoBehaviour
         Vector2Int playerSpawnCoordinates = new Vector2Int(Mathf.FloorToInt(levels[targetLevel].LevelSize.x / 2), 
             Mathf.FloorToInt(levels[targetLevel].LevelSize.x / 2));
         Controller.TileGridController.SpawnCreature(playerSpawnCoordinates, playerPrefab);
-        Controller.TileGridController.TileArray[playerSpawnCoordinates.x, playerSpawnCoordinates.y].UpdateVisuals();
+        Controller.TileGridController.UpdateGridVisuals();
+        //Controller.TileGridController.TileArray[playerSpawnCoordinates.x, playerSpawnCoordinates.y].UpdateVisuals();
     }
 
     public bool[,] GenerateWithMarchingSquare(Vector2Int size, float emptinessRatio)

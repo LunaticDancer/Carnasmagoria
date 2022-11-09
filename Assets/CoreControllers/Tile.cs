@@ -6,8 +6,10 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer background = null;
     [SerializeField] private UnityEngine.UI.Text characterDisplay = null;
+    [SerializeField] private GameObject visionBlockBox = null;
     private bool blocksVision = false;
     private bool blocksMovement = false;
+    private bool wasUncovered = false;
 
     private List<Entity> entities = new List<Entity>();
     private Vector2Int gridPosition;
@@ -25,22 +27,34 @@ public class Tile : MonoBehaviour
 
 	public void UpdateVisuals()
 	{
-        Entity priorityEntity = FindHighestRenderingPriorityEntity();
-        if (priorityEntity)
+        if (GameController.Instance.WorldController.TileGridController.IsTileInPlayerVision(this))
         {
-            SetCharacter(priorityEntity.Symbol);
-            SetColor(priorityEntity.BackgroundColor);
-            SetCharacterColor(priorityEntity.SymbolColor);
+            wasUncovered = true;
+            Entity priorityEntity = FindHighestRenderingPriorityEntity();
+            if (priorityEntity)
+            {
+                SetCharacter(priorityEntity.Symbol);
+                SetColor(priorityEntity.BackgroundColor);
+                SetCharacterColor(priorityEntity.SymbolColor);
+            }
+            else
+            {
+                SetAsRandomGroundTile();
+            }
         }
         else
         {
-            SetAsRandomGroundTile();
+            if (wasUncovered)
+            {
+                SetColor(new Color(background.color.grayscale, background.color.grayscale, background.color.grayscale));
+                SetCharacterColor(new Color(characterDisplay.color.grayscale, characterDisplay.color.grayscale, characterDisplay.color.grayscale));
+            }
         }
 	}
 
     public void SetAsRandomGroundTile()
     {
-        int decideCharacter = Random.Range(0, 7);
+        int decideCharacter = Random.Range(0, 13);
         switch (decideCharacter)
         {
             case 0:
@@ -93,7 +107,7 @@ public class Tile : MonoBehaviour
     {
         if (newColor == Color.magenta)
         {
-            background.color = new Color(0,0,0,0); // magenta = transparent tile
+            background.color = new Color(0.7490196f, 0.3745098f, 0.3745098f, 0); // magenta = transparent tile
         }
         else
         {
@@ -104,15 +118,15 @@ public class Tile : MonoBehaviour
     public void AttachEntity(Entity newEntity)
     {
         entities.Add(newEntity);
-        UpdateVisuals();
         blocksVision = CheckIfBlocksVision();
+        visionBlockBox.SetActive(blocksVision);
         blocksMovement = CheckIfBlocksMovement();
     }
     public void DettachEntity(Entity entity)
     {
         entities.Remove(entity);
-        UpdateVisuals();
         blocksVision = CheckIfBlocksVision();
+        visionBlockBox.SetActive(blocksVision);
         blocksMovement = CheckIfBlocksMovement();
     }
 
