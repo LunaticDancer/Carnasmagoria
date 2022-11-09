@@ -119,14 +119,14 @@ public class Tile : MonoBehaviour
     {
         entities.Add(newEntity);
         blocksVision = CheckIfBlocksVision();
-        visionBlockBox.SetActive(blocksVision);
+        SetVisionBlockerActive(blocksVision);
         blocksMovement = CheckIfBlocksMovement();
     }
     public void DettachEntity(Entity entity)
     {
         entities.Remove(entity);
         blocksVision = CheckIfBlocksVision();
-        visionBlockBox.SetActive(blocksVision);
+        SetVisionBlockerActive(blocksVision);
         blocksMovement = CheckIfBlocksMovement();
     }
 
@@ -146,5 +146,10 @@ public class Tile : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void SetVisionBlockerActive(bool state)
+    {
+        visionBlockBox.SetActive(state);
     }
 }

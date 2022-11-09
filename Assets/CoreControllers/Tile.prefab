@@ -320,9 +320,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2040332475613074183}
   - component: {fileID: 3042655260743290643}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VisionBlock
-  m_TagString: Untagged
+  m_TagString: VisionBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -365,5 +365,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0

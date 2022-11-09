@@ -9,6 +9,7 @@ public class TileGridController : MonoBehaviour
 
     [SerializeField] private GameObject tilePrefab = null;
     [SerializeField] private GameObject indestructibleWallPrefab = null;
+    [SerializeField] private LayerMask visionBlockLayer = 6;
     private Tile[,] tileArray = null;
     private List<Creature> playerCameras = new List<Creature>();
 
@@ -34,7 +35,23 @@ public class TileGridController : MonoBehaviour
         {
             if (Vector2.Distance(tile.transform.position, source.transform.position) <= source.VisionRange)
             {
-                return true;
+                if (tile.BlocksVision)
+                {
+                    tile.SetVisionBlockerActive(false); // temporarily turning off the tile's blocker so that it doesn't shade itself
+                }
+
+                RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, source.transform.position - tile.transform.position,
+                    Vector2.Distance(tile.transform.position, source.transform.position), visionBlockLayer);
+
+                if (tile.BlocksVision)
+                {
+                    tile.SetVisionBlockerActive(true);
+                }
+
+                if (hit.collider == null)
+                {
+                    return true;
+                }
             }
         }
         return false;
