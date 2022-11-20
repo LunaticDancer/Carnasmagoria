@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    [System.Serializable]
+    public class EmptyTileSigns
+    {
+        public char character;
+        public int odds;
+    }
+
     [SerializeField] private SpriteRenderer background = null;
     [SerializeField] private UnityEngine.UI.Text characterDisplay = null;
     [SerializeField] private GameObject visionBlockBox = null;
+    [SerializeField] private EmptyTileSigns[] emptyTileCharacters = null;
     private bool blocksVision = false;
     private bool blocksMovement = false;
     private bool wasUncovered = false;
@@ -56,24 +64,26 @@ public class Tile : MonoBehaviour
 
     public void SetAsRandomGroundTile()
     {
-        int decideCharacter = Random.Range(0, 13);
-        switch (decideCharacter)
-        {
-            case 0:
-                SetCharacter(':');
-                break;
-            case 1:
-                SetCharacter(',');
-                break;
-            case 2:
-                SetCharacter('*');
-                break;
-            default:
-                SetCharacter('.');
-                break;
-        }
         SetColor(GameController.Instance.WorldController.LevelGenerator.currentLevel.FloorColor);
         SetCharacterColor(new Color(0.5f, 0.25f, 0.25f));
+        foreach (EmptyTileSigns sign in emptyTileCharacters)
+        {
+            if (characterDisplay.text[0] == sign.character)
+                return;
+        }
+        int range = 1;
+        foreach (EmptyTileSigns sign in emptyTileCharacters)
+        {
+            range += sign.odds;
+        }
+        int decideCharacter = Random.Range(0, range);
+        int index = 0;
+        while (decideCharacter > emptyTileCharacters[index].odds)
+        {
+            decideCharacter -= emptyTileCharacters[index].odds;
+            index++;
+        }
+        SetCharacter(emptyTileCharacters[index].character);
     }
 
     private Entity FindHighestRenderingPriorityEntity()
