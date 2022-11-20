@@ -24,7 +24,9 @@ public class LevelData : ScriptableObject
     public Vector2Int LevelSize = new Vector2Int(50, 50);
     public GenerationTypes GenerationType = GenerationTypes.MarchingSquareCavesHighPercent;
     public GameObject DefaultWallPrefab = null;
-    public int monsterBudget = 50;
+    public int MonsterBudget = 50;
     public EnemyOdds[] EnemySpawningOdds = null;
 
+    public Color BackgroundColor;
+    public Color FloorColor;
 }

@@ -8,29 +8,31 @@ public class LevelGenerator : MonoBehaviour
     public WorldController Controller = null;
 
     [SerializeField] private GameObject playerPrefab = null;
-    [SerializeField] private LevelData[] levels = null;
+    public LevelData startingLevel = null;
+    public LevelData currentLevel = null;
 
     public void Init(WorldController controller)
     {
         Controller = controller;
     }
 
-    public void GenerateLevelLayout(int targetLevel)
+    public void GenerateLevelLayout(LevelData level)
     {
         bool[,] layout = new bool[1,1]; // true = floor, false = wall
+        currentLevel = level;
+        Camera.main.backgroundColor = level.BackgroundColor;
 
-        if (levels[targetLevel].GenerationType == LevelData.GenerationTypes.MarchingSquareCavesHighPercent)
+        if (level.GenerationType == LevelData.GenerationTypes.MarchingSquareCavesHighPercent)
         {
-            layout = GenerateWithMarchingSquare(levels[targetLevel].LevelSize, 0.5f);
+            layout = GenerateWithMarchingSquare(level.LevelSize, 0.5f);
         }
 
-        Controller.TileGridController.FillWithLayout(layout, levels[targetLevel].DefaultWallPrefab);
+        Controller.TileGridController.FillWithLayout(layout, level.DefaultWallPrefab);
 
-        Vector2Int playerSpawnCoordinates = new Vector2Int(Mathf.FloorToInt(levels[targetLevel].LevelSize.x / 2), 
-            Mathf.FloorToInt(levels[targetLevel].LevelSize.x / 2));
+        Vector2Int playerSpawnCoordinates = new Vector2Int(Mathf.FloorToInt(level.LevelSize.x / 2), 
+            Mathf.FloorToInt(level.LevelSize.x / 2));
         Controller.TileGridController.SpawnCreature(playerSpawnCoordinates, playerPrefab);
         Controller.TileGridController.UpdateGridVisuals();
-        //Controller.TileGridController.TileArray[playerSpawnCoordinates.x, playerSpawnCoordinates.y].UpdateVisuals();
     }
 
     public bool[,] GenerateWithMarchingSquare(Vector2Int size, float emptinessRatio)

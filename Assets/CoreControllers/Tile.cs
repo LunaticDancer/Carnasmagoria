@@ -22,6 +22,8 @@ public class Tile : MonoBehaviour
     public void Init(Vector2Int position)
     {
         gridPosition = position;
+        SetColor(GameController.Instance.WorldController.LevelGenerator.currentLevel.BackgroundColor);
+        SetCharacterColor(GameController.Instance.WorldController.LevelGenerator.currentLevel.BackgroundColor);
         UpdateVisuals();
     }
 
@@ -70,7 +72,7 @@ public class Tile : MonoBehaviour
                 SetCharacter('.');
                 break;
         }
-        SetColor(Color.magenta);
+        SetColor(GameController.Instance.WorldController.LevelGenerator.currentLevel.FloorColor);
         SetCharacterColor(new Color(0.5f, 0.25f, 0.25f));
     }
 

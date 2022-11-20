@@ -26,7 +26,7 @@ public class WorldController : MonoBehaviour
 
     public void PrepareWorld()
     {
-        LevelGenerator.GenerateLevelLayout(currentLevel);
+        LevelGenerator.GenerateLevelLayout(LevelGenerator.startingLevel);
         isThePlayerAlive = true;
     }
 }
