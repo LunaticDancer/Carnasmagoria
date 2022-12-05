@@ -16,4 +16,42 @@ public class BodyPart : Item
     [HideInInspector] public List<BodyPart> DependentBodyParts { get => dependentBodyParts; }
     [HideInInspector] public List<Ability> Abilities { get => abilities; }
     [HideInInspector] public float CarryCapacityExtension { get => carryCapacityExtension; }
+
+    public void Attach(Entity target)
+    {
+        attachedTo = target;
+        foreach (BodyPart part in dependentBodyParts)
+        {
+            part.Attach(this);
+        }
+    }
+
+    public void Detach(Tile targetTile)
+    {
+        attachedTo = null;
+        SetTile(targetTile);
+    }
+
+    public List<Ability> GatherAbilitiesRecursive()
+    {
+        List<Ability> result = new List<Ability>();
+
+        foreach (BodyPart part in dependentBodyParts)
+        {
+            result.AddRange(part.GatherAbilitiesRecursive());
+        }
+        result.AddRange(abilities);
+
+        return result;
+    }
+
+    public float GatherStructureCostRecursive()
+    {
+        float result = bodyStructureCost;
+        foreach (BodyPart part in dependentBodyParts)
+        {
+            result += part.BodyStructureCost;
+        }
+        return result;
+    }
 }

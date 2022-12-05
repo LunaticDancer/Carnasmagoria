@@ -65,6 +65,7 @@ public class Creature : Entity
 
     public void Init()
     {
+        InitBodyParts();
         availableAbilityList = GatherAllAbilities();
         primaryCombatAbility = FindPrimaryCombatAbility();
         primaryMovementAbility = FindPrimaryMovementAbility();
@@ -86,7 +87,8 @@ public class Creature : Entity
         List<Ability> result = new List<Ability>();
         foreach (BodyPart bodyPart in bodyParts)
         {
-            foreach (Ability ability in bodyPart.Abilities)
+            List<Ability> partList = bodyPart.GatherAbilitiesRecursive();
+            foreach (Ability ability in partList)
             {
                 if (!result.Contains(ability))
                 {
@@ -125,6 +127,15 @@ public class Creature : Entity
             }
         }
         return null;
+    }
+
+    // this is only meant to be used on approved creature compositions, can cause invalid creatures otherwise (skips structure costs)
+    private void InitBodyParts()
+    {
+        foreach (BodyPart part in bodyParts)
+        {
+            part.Attach(this);
+        }
     }
 
     // creating distinction between healing and dealing damage in case of future effects that care only about one or the other
