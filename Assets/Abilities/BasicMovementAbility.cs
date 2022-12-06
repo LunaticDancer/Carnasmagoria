@@ -9,6 +9,7 @@ public class BasicMovementAbility : Ability
 	{
 		GameController.Instance.WorldController.TileGridController.MoveEntity(target, caster);
 		GameController.Instance.WorldController.TileGridController.UpdateGridVisuals();
+		caster.TriggerAllAbilitiesInGroup(AbilityTriggers.OnMove);
 		return true;
 	}
 }

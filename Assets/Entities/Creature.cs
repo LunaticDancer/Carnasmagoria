@@ -82,6 +82,7 @@ public class Creature : Entity
     }
     public void TakeTurn()
     {
+        TriggerAllAbilitiesInGroup(Ability.AbilityTriggers.OnTurnStart);
         if (isUnderPlayerControl)
         {
             GameController.Instance.CameraController.SetFollowTarget(transform);
@@ -89,6 +90,14 @@ public class Creature : Entity
             {
                 GameController.Instance.WorldController.TurnHandler.InputHandler.StartAiming(this, primaryMovementAbility);
             }
+        }
+    }
+
+    public void TriggerAllAbilitiesInGroup(Ability.AbilityTriggers trigger)
+    {
+        foreach (Ability ability in abilityTriggerGroups[(int)trigger].abilities)
+        {
+            ability.Cast(this, CurrentTile);
         }
     }
 
@@ -171,6 +180,7 @@ public class Creature : Entity
     // creating distinction between healing and dealing damage in case of future effects that care only about one or the other
     public void DealDamage(int amount)
     {
+        TriggerAllAbilitiesInGroup(Ability.AbilityTriggers.OnReceiveDamage);
         CurrentHealth = CurrentHealth - amount;
     }
 
@@ -181,7 +191,7 @@ public class Creature : Entity
 
     protected void Die()
     {
-        // yeah, I still gotta think through how dying will be handled
+        TriggerAllAbilitiesInGroup(Ability.AbilityTriggers.OnDeath);
     }
 
     public void LowerTurnTimer(float amount)
