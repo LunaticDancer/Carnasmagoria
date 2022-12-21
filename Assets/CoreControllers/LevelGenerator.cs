@@ -24,13 +24,13 @@ public class LevelGenerator : MonoBehaviour
         Vector2Int playerSpawnCoordinates = new Vector2Int(Mathf.FloorToInt(level.LevelSize.x / 2),
             Mathf.FloorToInt(level.LevelSize.x / 2));
 
-        if (level.GenerationType == LevelData.GenerationTypes.MarchingSquareCavesHighPercent)
+        if (level.GenerationType == LevelData.GenerationTypes.MarchingSquare)
         {
-            layout = GenerateWithMarchingSquare(level.LevelSize, 0.5f);
+            layout = GenerateWithMarchingSquare(level.LevelSize, level.levelFillPercent);
         }
-        else if (level.GenerationType == LevelData.GenerationTypes.PerlinOpenSpace)
+        else if (level.GenerationType == LevelData.GenerationTypes.Perlin)
         {
-            layout = GenerateWithPerlinNoise(level.LevelSize, 0.5f, 0.1f);
+            layout = GenerateWithPerlinNoise(level.LevelSize, level.levelFillPercent, 0.1f);
             while (!layout[playerSpawnCoordinates.x, playerSpawnCoordinates.y]) // TODO: make the position correction less hacky (spiral check?)
             {
                 playerSpawnCoordinates = new Vector2Int(Random.Range(0, level.LevelSize.x), Random.Range(0, level.LevelSize.y));

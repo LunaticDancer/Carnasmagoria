@@ -7,11 +7,8 @@ public class LevelData : ScriptableObject
 {
     public enum GenerationTypes
     {
-        MarchingSquareCavesLowPercent,
-        MarchingSquareCavesMidPercent,
-        MarchingSquareCavesHighPercent,
-        PerlinOpenSpace,
-        PerlinDestructibleCaves
+        MarchingSquare,
+        Perlin
     }
 
     [System.Serializable] public class EnemyOdds
@@ -22,7 +19,9 @@ public class LevelData : ScriptableObject
     }
 
     public Vector2Int LevelSize = new Vector2Int(50, 50);
-    public GenerationTypes GenerationType = GenerationTypes.MarchingSquareCavesHighPercent;
+    [Range(0.01f, 0.99f)]
+    public float levelFillPercent = 0.5f;
+    public GenerationTypes GenerationType = GenerationTypes.MarchingSquare;
     public GameObject DefaultWallPrefab = null;
     public int MonsterBudget = 50;
     public EnemyOdds[] EnemySpawningOdds = null;
