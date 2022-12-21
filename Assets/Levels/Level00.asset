@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Level00
   m_EditorClassIdentifier: 
   LevelSize: {x: 60, y: 60}
-  GenerationType: 2
-  DefaultWallPrefab: {fileID: 3976017943781511379, guid: a774c323cbd487b4d9d3e059a326fe8d, type: 3}
+  GenerationType: 3
+  DefaultWallPrefab: {fileID: 3976017943781511379, guid: 2e7b9a91f6cf36549b4e5636fd86fa06, type: 3}
   MonsterBudget: 50
   EnemySpawningOdds: []
   BackgroundColor: {r: 0.25, g: 0.1875, b: 0.1875, a: 1}

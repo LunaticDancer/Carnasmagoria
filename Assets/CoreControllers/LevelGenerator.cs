@@ -21,18 +21,46 @@ public class LevelGenerator : MonoBehaviour
         bool[,] layout = new bool[1,1]; // true = floor, false = wall
         currentLevel = level;
         Camera.main.backgroundColor = level.BackgroundColor;
+        Vector2Int playerSpawnCoordinates = new Vector2Int(Mathf.FloorToInt(level.LevelSize.x / 2),
+            Mathf.FloorToInt(level.LevelSize.x / 2));
 
         if (level.GenerationType == LevelData.GenerationTypes.MarchingSquareCavesHighPercent)
         {
             layout = GenerateWithMarchingSquare(level.LevelSize, 0.5f);
         }
+        else if (level.GenerationType == LevelData.GenerationTypes.PerlinOpenSpace)
+        {
+            layout = GenerateWithPerlinNoise(level.LevelSize, 0.5f, 0.1f);
+            while (!layout[playerSpawnCoordinates.x, playerSpawnCoordinates.y]) // TODO: make the position correction less hacky (spiral check?)
+            {
+                playerSpawnCoordinates = new Vector2Int(Random.Range(0, level.LevelSize.x), Random.Range(0, level.LevelSize.y));
+            }
+        }
 
         Controller.TileGridController.FillWithLayout(layout, level.DefaultWallPrefab);
 
-        Vector2Int playerSpawnCoordinates = new Vector2Int(Mathf.FloorToInt(level.LevelSize.x / 2), 
-            Mathf.FloorToInt(level.LevelSize.x / 2));
         Controller.TileGridController.SpawnCreature(playerSpawnCoordinates, playerPrefab);
         Controller.TileGridController.UpdateGridVisuals();
+    }
+
+    public bool[,] GenerateWithPerlinNoise(Vector2Int size, float emptinessRatio, float scale)
+    {
+        float perlinConstant = Time.realtimeSinceStartup * 2.137f;
+        bool[,] result = new bool[size.x, size.y];
+
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int y = 0; y < size.y; y++)
+            {
+                if (Mathf.PerlinNoise((x * scale)+perlinConstant, (y*scale)+perlinConstant) < emptinessRatio)
+                {
+                    result[x, y] = true;
+                }
+            }
+        }
+
+
+        return result;
     }
 
     public bool[,] GenerateWithMarchingSquare(Vector2Int size, float emptinessRatio)
@@ -53,7 +81,7 @@ public class LevelGenerator : MonoBehaviour
             switch (direction) // move by one tile
             {
                 case 0:
-                    if(currentX < size.x - 1)
+                    if (currentX < size.x - 1)
                         currentX++;
                     break;
                 case 1:
@@ -80,4 +108,5 @@ public class LevelGenerator : MonoBehaviour
 
         return result;
     }
+
 }
