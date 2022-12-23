@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19d15e671381dfc4f977626f00cef4e4, type: 3}
-  m_Name: Level00
+  m_Name: Main01
   m_EditorClassIdentifier: 
   LevelSize: {x: 60, y: 60}
   levelFillPercent: 0.5
-  GenerationType: 1
-  DefaultWallPrefab: {fileID: 3976017943781511379, guid: 2e7b9a91f6cf36549b4e5636fd86fa06, type: 3}
+  GenerationType: 0
+  DefaultWallPrefab: {fileID: 3976017943781511379, guid: a774c323cbd487b4d9d3e059a326fe8d, type: 3}
+  EntranceOnPlayer: {fileID: 0}
+  FurthestEntrance: {fileID: 0}
+  AdditionalEntrances: []
   MonsterBudget: 50
   EnemySpawningOdds: []
   BackgroundColor: {r: 0.25, g: 0.1875, b: 0.1875, a: 1}

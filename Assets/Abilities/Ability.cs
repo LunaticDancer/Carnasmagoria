@@ -8,7 +8,8 @@ public class Ability : ScriptableObject
     {
         NoAiming,
         EightDirections,
-        FreeAim
+        FreeAim,
+        Interaction
     }
 
     public enum AbilityTriggers
