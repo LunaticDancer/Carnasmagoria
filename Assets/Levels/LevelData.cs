@@ -23,6 +23,11 @@ public class LevelData : ScriptableObject
     public float levelFillPercent = 0.5f;
     public GenerationTypes GenerationType = GenerationTypes.MarchingSquare;
     public GameObject DefaultWallPrefab = null;
+
+    public GameObject EntranceOnPlayer = null;
+    public GameObject FurthestEntrance = null;
+    public GameObject[] AdditionalEntrances = null;
+
     public int MonsterBudget = 50;
     public EnemyOdds[] EnemySpawningOdds = null;
 

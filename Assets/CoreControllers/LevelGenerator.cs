@@ -40,6 +40,10 @@ public class LevelGenerator : MonoBehaviour
         Controller.TileGridController.FillWithLayout(layout, level.DefaultWallPrefab);
 
         Controller.TileGridController.SpawnCreature(playerSpawnCoordinates, playerPrefab);
+        if (level.EntranceOnPlayer)
+        {
+            Controller.TileGridController.SpawnCreature(playerSpawnCoordinates, level.EntranceOnPlayer);
+        }
         Controller.TileGridController.UpdateGridVisuals();
     }
 
