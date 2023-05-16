@@ -104,6 +104,7 @@ public class TileGridController : MonoBehaviour
         AttachEntity(coordinates, spawned);
         spawned.Init();
         Controller.TurnHandler.AddCreature(spawned);
+        UpdateGridVisuals();
     }
 
     public void MoveEntity(Vector2Int newCoordinates, Entity entity)

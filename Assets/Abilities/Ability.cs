@@ -8,8 +8,7 @@ public class Ability : ScriptableObject
     {
         NoAiming,
         EightDirections,
-        FreeAim,
-        Interaction
+        FreeAim
     }
 
     public enum AbilityTriggers
@@ -22,7 +21,8 @@ public class Ability : ScriptableObject
         OnAttachThisBodyPart,
         OnDetachThisBodyPart,
         OnAttachAnyBodyPart,
-        OnDetachAnyBodyPart
+        OnDetachAnyBodyPart,
+        OnInteracted
     }
 
     public enum AbilityAiFlags

@@ -42,7 +42,7 @@ public class TurnHandler : MonoBehaviour
         currentCreature = FindCreatureWithNearestTurn();
         foreach (Creature creature in turnTakers)
         {
-            creature.LowerTurnTimer(currentCreature.TurnTimer);
+            creature.ChangeTurnTimer(-currentCreature.TurnTimer);
         }
         currentCreature.TakeTurn();
     }
@@ -62,6 +62,7 @@ public class TurnHandler : MonoBehaviour
                 if (creature.TurnTimer < shortestTimer)
                 {
                     result = creature;
+                    shortestTimer = creature.TurnTimer;
                 }
             }
             return result;

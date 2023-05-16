@@ -85,10 +85,20 @@ public class Creature : Entity
         TriggerAllAbilitiesInGroup(Ability.AbilityTriggers.OnTurnStart);
         if (isUnderPlayerControl)
         {
+            Debug.Log("Player started their turn.");
             GameController.Instance.CameraController.SetFollowTarget(transform);
             if (primaryMovementAbility)
             {
                 GameController.Instance.WorldController.TurnHandler.InputHandler.StartAiming(this, primaryMovementAbility);
+            }
+        }
+        else
+        {
+            Debug.Log(NameLabel + " started their turn.");
+            if (abilityTriggerGroups[(int)Ability.AbilityTriggers.OnUse].abilities.Count == 0)
+            {
+                // no active abilities = skip the turn
+                turnTimer = 1000;
             }
         }
     }
@@ -194,9 +204,9 @@ public class Creature : Entity
         TriggerAllAbilitiesInGroup(Ability.AbilityTriggers.OnDeath);
     }
 
-    public void LowerTurnTimer(float amount)
+    public void ChangeTurnTimer(float amount)
     {
-        turnTimer -= amount;
+        turnTimer += amount;
     }
 
     public void SetVisionRange(float range, bool forceOverwrite)
