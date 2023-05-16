@@ -220,4 +220,21 @@ public class Creature : Entity
         }
         visionRange = range;
     }
+
+    public void Interacted(Creature interactor)
+    {
+        TriggerAllAbilitiesInGroup(Ability.AbilityTriggers.OnInteracted);
+    }
+
+    public Creature TryInteract()
+    {
+        foreach (Creature creature in CurrentTile.Entities)
+        {
+            if (creature.abilityTriggerGroups[(int)Ability.AbilityTriggers.OnInteracted].abilities.Count > 0)
+            {
+                return creature;
+            }
+        }
+        return null;
+    }
 }

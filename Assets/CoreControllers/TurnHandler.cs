@@ -12,6 +12,8 @@ public class TurnHandler : MonoBehaviour
     private List<Creature> turnTakers = new List<Creature>();
     private Creature currentCreature = null;
 
+    public Creature CurrentCreature => currentCreature;
+
     public void Init(WorldController controller)
     {
         Controller = controller;

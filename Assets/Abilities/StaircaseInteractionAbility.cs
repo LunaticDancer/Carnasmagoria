@@ -13,7 +13,7 @@ public class StaircaseInteractionAbility : Ability
 	{
 		if (targetLevel)
 		{
-			GameController.Instance.WorldController.LevelGenerator.GenerateLevelLayout(targetLevel);
+			GameController.Instance.WorldController.LevelGenerator.MoveBetweenLevels(targetLevel, GameController.Instance.WorldController.TurnHandler.CurrentCreature);
 			return true;
 		}
 		return false;
