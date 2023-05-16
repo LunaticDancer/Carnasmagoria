@@ -16,8 +16,8 @@ MonoBehaviour:
   caresForCollision: 0
   range: 1
   timeCost: 1
-  aimingMode: 3
-  triggerList: 00000000
+  aimingMode: 0
+  triggerList: 09000000
   aiFlagList: 00000000
   resourceCosts: []
   targetLevel: {fileID: 11400000, guid: 649847f5b1c1fd846b5d740f702628f7, type: 2}
