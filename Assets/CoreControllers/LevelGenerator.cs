@@ -16,7 +16,22 @@ public class LevelGenerator : MonoBehaviour
         Controller = controller;
     }
 
-    public void GenerateLevelLayout(LevelData level)
+    public void MoveBetweenLevels(LevelData level, Creature player)
+    {
+        player.CurrentTile.DettachEntity(player);
+        Vector2Int playerSpawnPoint = GenerateLevelLayout(level);
+        Controller.TileGridController.AttachEntity(playerSpawnPoint, player);
+        Controller.TileGridController.UpdateGridVisuals();
+    }
+
+    public void StartFromScratchInLevel(LevelData level)
+    {
+        Vector2Int playerSpawnPoint = GenerateLevelLayout(level);
+        Controller.TileGridController.SpawnCreature(playerSpawnPoint, playerPrefab);
+        Controller.TileGridController.UpdateGridVisuals();
+    }
+
+    public Vector2Int GenerateLevelLayout(LevelData level)
     {
         bool[,] layout = new bool[1,1]; // true = floor, false = wall
         currentLevel = level;
@@ -37,14 +52,14 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
+        Controller.TileGridController.ClearMapLayout();
         Controller.TileGridController.FillWithLayout(layout, level.DefaultWallPrefab);
 
-        Controller.TileGridController.SpawnCreature(playerSpawnCoordinates, playerPrefab);
         if (level.EntranceOnPlayer)
         {
             Controller.TileGridController.SpawnCreature(playerSpawnCoordinates, level.EntranceOnPlayer);
         }
-        Controller.TileGridController.UpdateGridVisuals();
+        return playerSpawnCoordinates;
     }
 
     public bool[,] GenerateWithPerlinNoise(Vector2Int size, float emptinessRatio, float scale)

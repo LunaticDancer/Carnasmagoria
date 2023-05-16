@@ -28,7 +28,22 @@ public class InputHandler : MonoBehaviour
     {
         if (inputState == InputStates.Aiming)
         {
-            Aim();
+            if (Input.GetButtonDown("Interact"))
+            {
+                Creature interactiveEntity = playerAbilityCaster.TryInteract();
+                if (interactiveEntity)
+                {
+                    interactiveEntity.Interacted(playerAbilityCaster);
+                }
+                else
+                {
+                    Debug.Log("Nothing to interact with here.");
+                }
+            }
+            else
+            {
+                Aim();
+            }
         }
     }
 
@@ -76,6 +91,7 @@ public class InputHandler : MonoBehaviour
             spaceCounter++;
         }
         aimedAbility.Cast(playerAbilityCaster, GameController.Instance.WorldController.TileGridController.TileArray[TargetTileCoords.x, TargetTileCoords.y]);
+        inputState = InputStates.Idle;
     }
 
     public void StartAiming(Creature caster, Ability ability)

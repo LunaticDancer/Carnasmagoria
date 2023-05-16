@@ -57,6 +57,20 @@ public class TileGridController : MonoBehaviour
         return false;
     }
 
+    public void ClearMapLayout()
+    {
+        if (tileArray == null)
+            return;
+
+        for (int x = 0; x < tileArray.GetLength(0); x++)
+        {
+            for (int y = 0; y < tileArray.GetLength(1); y++)
+            {
+                tileArray[x, y].DestroyTile();
+            }
+        }
+    }
+
     public void FillWithLayout(bool[,] layout, GameObject wallPrefab)
     {
         tileArray = new Tile[layout.GetLength(0), layout.GetLength(1)];

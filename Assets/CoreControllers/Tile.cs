@@ -142,6 +142,21 @@ public class Tile : MonoBehaviour
         blocksMovement = CheckIfBlocksMovement();
     }
 
+    public void DestroyTile()
+    {
+        for(int i = entities.Count -1; i > -1; i--)
+        {
+            Entity temp = entities[i];
+            if (temp is Creature)
+            {
+                GameController.Instance.WorldController.TurnHandler.RemoveCreature(temp as Creature);
+            }
+            DettachEntity(temp);
+            Destroy(temp.gameObject);
+        }
+        Destroy(gameObject);
+    }
+
     private bool CheckIfBlocksVision()
     {
         if (System.Array.Exists(entities.ToArray(), element => element.IsVisionObstacle))
