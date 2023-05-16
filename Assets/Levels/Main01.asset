@@ -16,7 +16,7 @@ MonoBehaviour:
   levelFillPercent: 0.5
   GenerationType: 0
   DefaultWallPrefab: {fileID: 3976017943781511379, guid: a774c323cbd487b4d9d3e059a326fe8d, type: 3}
-  EntranceOnPlayer: {fileID: 0}
+  EntranceOnPlayer: {fileID: 3976017943781511379, guid: 779e726028130c84789b5d251f79b593, type: 3}
   FurthestEntrance: {fileID: 0}
   AdditionalEntrances: []
   MonsterBudget: 50
