@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class WorldController : MonoBehaviour
 {
+    public static WorldController Instance;
+
     [HideInInspector]
     public GameController Controller = null;
 
@@ -16,9 +18,17 @@ public class WorldController : MonoBehaviour
     public LevelGenerator LevelGenerator = null;
     public TurnHandler TurnHandler = null;
 
-    public void Init(GameController controller)
+    private void Awake()
     {
-        Controller = controller;
+        if (Instance)
+        {
+            Destroy(gameObject);
+        }
+        Instance = this;
+    }
+
+    public void Init()
+    {
         TileGridController.Init(this);
         LevelGenerator.Init(this);
         TurnHandler.Init(this);

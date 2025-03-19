@@ -30,14 +30,14 @@ public class Tile : MonoBehaviour
     public void Init(Vector2Int position)
     {
         gridPosition = position;
-        SetColor(GameController.Instance.WorldController.LevelGenerator.currentLevel.BackgroundColor);
-        SetCharacterColor(GameController.Instance.WorldController.LevelGenerator.currentLevel.BackgroundColor);
+        SetColor(WorldController.Instance.LevelGenerator.currentLevel.BackgroundColor);
+        SetCharacterColor(WorldController.Instance.LevelGenerator.currentLevel.BackgroundColor);
         UpdateVisuals();
     }
 
 	public void UpdateVisuals()
 	{
-        if (GameController.Instance.WorldController.TileGridController.IsTileInPlayerVision(this))
+        if (WorldController.Instance.TileGridController.IsTileInPlayerVision(this))
         {
             wasUncovered = true;
             Entity priorityEntity = FindHighestRenderingPriorityEntity();
@@ -64,7 +64,7 @@ public class Tile : MonoBehaviour
 
     public void SetAsRandomGroundTile()
     {
-        SetColor(GameController.Instance.WorldController.LevelGenerator.currentLevel.FloorColor);
+        SetColor(WorldController.Instance.LevelGenerator.currentLevel.FloorColor);
         SetCharacterColor(new Color(0.5f, 0.25f, 0.25f));
         foreach (EmptyTileSigns sign in emptyTileCharacters)
         {
@@ -149,7 +149,7 @@ public class Tile : MonoBehaviour
             Entity temp = entities[i];
             if (temp is Creature)
             {
-                GameController.Instance.WorldController.TurnHandler.RemoveCreature(temp as Creature);
+                WorldController.Instance.TurnHandler.RemoveCreature(temp as Creature);
             }
             DettachEntity(temp);
             Destroy(temp.gameObject);

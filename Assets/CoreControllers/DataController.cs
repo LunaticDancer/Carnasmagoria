@@ -6,11 +6,17 @@ using UnityEngine;
 
 public class DataController : MonoBehaviour
 {
+    public static DataController Instance;
+
     [HideInInspector]
     public GameController Controller = null;
 
-    public void Init(GameController controller)
+    private void Awake()
     {
-        Controller = controller;
+        if (Instance)
+        {
+            Destroy(gameObject);
+        }
+        Instance = this;
     }
 }

@@ -80,7 +80,7 @@ public class InputHandler : MonoBehaviour
         int spaceCounter = 0;
         while (spaceCounter < aimedAbility.Range)
         {
-            if (GameController.Instance.WorldController.TileGridController.IsPointLegalToCast(TargetTileCoords + aimVector, aimedAbility.CaresForVision, aimedAbility.CaresForCollision))
+            if (WorldController.Instance.TileGridController.IsPointLegalToCast(TargetTileCoords + aimVector, aimedAbility.CaresForVision, aimedAbility.CaresForCollision))
             {
                 TargetTileCoords += aimVector;
             }
@@ -90,7 +90,7 @@ public class InputHandler : MonoBehaviour
             }
             spaceCounter++;
         }
-        aimedAbility.Cast(playerAbilityCaster, GameController.Instance.WorldController.TileGridController.TileArray[TargetTileCoords.x, TargetTileCoords.y]);
+        aimedAbility.Cast(playerAbilityCaster, WorldController.Instance.TileGridController.TileArray[TargetTileCoords.x, TargetTileCoords.y]);
         inputState = InputStates.Idle;
     }
 

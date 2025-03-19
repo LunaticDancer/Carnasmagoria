@@ -7,8 +7,8 @@ public class BasicMovementAbility : Ability
 {
 	public override bool Cast(Creature caster, Tile target)
 	{
-		GameController.Instance.WorldController.TileGridController.MoveEntity(target, caster);
-		GameController.Instance.WorldController.TileGridController.UpdateGridVisuals();
+		WorldController.Instance.TileGridController.MoveEntity(target, caster);
+		WorldController.Instance.TileGridController.UpdateGridVisuals();
 		caster.TriggerAllAbilitiesInGroup(AbilityTriggers.OnMove);
 		caster.ChangeTurnTimer(timeCost);
 		return true;

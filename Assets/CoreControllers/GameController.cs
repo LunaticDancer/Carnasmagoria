@@ -9,23 +9,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance;
 
-    [SerializeField]
-    private GameObject UIControllerPrefab = null;
-    [HideInInspector]
-    public UIController UIController = null;
-
-    [SerializeField]
-    private GameObject DataControllerPrefab = null;
-    [HideInInspector]
-    public DataController DataController = null;
-
-    [SerializeField]
-    private GameObject WorldControllerPrefab = null;
-    [HideInInspector]
-    public WorldController WorldController = null;
-
-    public CameraController CameraController = null;
-
+    // the start of the game's sequential execution cascade
     void Start()
     {
         // making sure there are no duplicates of the Singleton
@@ -33,33 +17,25 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else
-        {
-            Instance = this;
-        }
+        Instance = this;
 
-        DataController = Instantiate(DataControllerPrefab, transform).GetComponent<DataController>();
-        UIController = Instantiate(UIControllerPrefab, transform).GetComponent<UIController>();
-        WorldController = Instantiate(WorldControllerPrefab, transform).GetComponent<WorldController>();
+        UIController.Instance.Init();
+        WorldController.Instance.Init();
 
-        DataController.Init(this);
-        UIController.Init(this);
-        WorldController.Init(this);
-
-        UIController.SetMainMenuVisibility(true);
+        UIController.Instance.SetMainMenuVisibility(true);
     }
 
 	private void Update()
 	{
-        if (WorldController.isThePlayerAlive)
+        if (WorldController.Instance.isThePlayerAlive)
         {
-            WorldController.TurnHandler.UpdateTurnFlow();
+            WorldController.Instance.TurnHandler.UpdateTurnFlow();
         }
 	}
 
 	public void StartGame()
     {
-        UIController.SetMainMenuVisibility(false);
-        WorldController.PrepareWorld();
+        UIController.Instance.SetMainMenuVisibility(false);
+        WorldController.Instance.PrepareWorld();
     }
 }

@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [HideInInspector]
-    public GameController Controller = null;
+    public static CameraController Instance;
 
     private Transform objectToFollow = null;
     [SerializeField]
     private float followLerpSpeed = 1f;
 
-    public void Init(GameController controller)
+	private void Awake()
     {
-        Controller = controller;
+        if (Instance)
+        {
+            Destroy(gameObject);
+        }
+        Instance = this;
     }
 
 	private void Update()

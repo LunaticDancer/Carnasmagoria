@@ -6,15 +6,22 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    [HideInInspector]
-    public GameController Controller = null;
+    public static UIController Instance;
 
     [SerializeField]
     private MainMenuView mainMenuView = null;
 
-    public void Init(GameController controller)
+	private void Awake()
     {
-        Controller = controller;
+        if (Instance)
+        {
+            Destroy(gameObject);
+        }
+        Instance = this;
+    }
+
+	public void Init()
+    {
         mainMenuView.Init(this);
     }
 

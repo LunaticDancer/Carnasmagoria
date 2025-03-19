@@ -86,10 +86,10 @@ public class Creature : Entity
         if (isUnderPlayerControl)
         {
             Debug.Log("Player started their turn.");
-            GameController.Instance.CameraController.SetFollowTarget(transform);
+            CameraController.Instance.SetFollowTarget(transform);
             if (primaryMovementAbility)
             {
-                GameController.Instance.WorldController.TurnHandler.InputHandler.StartAiming(this, primaryMovementAbility);
+                WorldController.Instance.TurnHandler.InputHandler.StartAiming(this, primaryMovementAbility);
             }
         }
         else
