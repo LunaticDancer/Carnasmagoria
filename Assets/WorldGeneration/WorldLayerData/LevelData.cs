@@ -31,6 +31,6 @@ public class LevelData : ScriptableObject
     public int MonsterBudget = 50;
     public EnemyOdds[] EnemySpawningOdds = null;
 
-    public Color BackgroundColor;
-    public Color FloorColor;
+    public ColorPalette BackgroundColor = ColorPalette.Darkness;
+    public ColorPalette FloorColor = ColorPalette.FleshLight;
 }

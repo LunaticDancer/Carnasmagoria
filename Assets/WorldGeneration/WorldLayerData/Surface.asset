@@ -21,5 +21,5 @@ MonoBehaviour:
   AdditionalEntrances: []
   MonsterBudget: 50
   EnemySpawningOdds: []
-  BackgroundColor: {r: 0.25, g: 0.1875, b: 0.1875, a: 1}
-  FloorColor: {r: 0.7490196, g: 0.37254903, b: 0.37254903, a: 1}
+  BackgroundColor: 9
+  FloorColor: 6

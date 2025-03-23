@@ -53,8 +53,8 @@ MonoBehaviour:
   nameLabel: Blood Pit
   flavorDescription: A pit in the ground filled to the brim with blood.
   symbol: 126
-  symbolColor: {r: 1, g: 0.25, b: 0.25, a: 1}
-  backgroundColor: {r: 0.75, g: 0.1875, b: 0.1875, a: 1}
+  symbolColor: 3
+  backgroundColor: 4
   isUnderPlayerControl: 0
   currentHealth: 20
   maxHealth: 20

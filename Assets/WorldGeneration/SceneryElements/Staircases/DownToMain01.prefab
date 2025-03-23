@@ -53,8 +53,8 @@ MonoBehaviour:
   nameLabel: Hole in the Ground
   flavorDescription: A mysterious hole you can fit into.
   symbol: 62
-  symbolColor: {r: 1, g: 1, b: 1, a: 1}
-  backgroundColor: {r: 1, g: 0, b: 1, a: 1}
+  symbolColor: 4
+  backgroundColor: 0
   mass: 1
   attachedTo: {fileID: 0}
   bodyStructureCost: 1
@@ -116,8 +116,8 @@ MonoBehaviour:
   nameLabel: Downward Passage
   flavorDescription: A mysterious orifice leading downwards.
   symbol: 62
-  symbolColor: {r: 1, g: 1, b: 1, a: 1}
-  backgroundColor: {r: 1, g: 0, b: 1, a: 1}
+  symbolColor: 5
+  backgroundColor: 7
   isUnderPlayerControl: 0
   currentHealth: 100
   maxHealth: 100

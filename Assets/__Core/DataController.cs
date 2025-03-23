@@ -8,8 +8,8 @@ public class DataController : MonoBehaviour
 {
     public static DataController Instance;
 
-    [HideInInspector]
-    public GameController Controller = null;
+    [EnumNamedArray( typeof(ColorPalette) )]
+    public Color[] BasicColorPalette;
 
     private void Awake()
     {
@@ -19,4 +19,24 @@ public class DataController : MonoBehaviour
         }
         Instance = this;
     }
+
+    public Color GetColor(ColorPalette index)
+    {
+        return BasicColorPalette[(int)index];
+    }
+}
+
+[System.Serializable]
+public enum ColorPalette
+{
+        NONE,
+        MetalLight,
+        MetalDark,
+        BloodLight,
+        BloodDark,
+        Bone,
+        FleshLight,
+        FleshMedium,
+        FleshDark,
+        Darkness
 }

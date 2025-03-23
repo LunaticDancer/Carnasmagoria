@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,5 +53,5 @@ MonoBehaviour:
   nameLabel: Indestructible Wall
   flavorDescription: An impenetrable wall of flesh and bone. Impossible to destroy.
   symbol: 35
-  symbolColor: {r: 1, g: 1, b: 1, a: 1}
-  backgroundColor: {r: 0.2509804, g: 0.1254902, b: 0.1254902, a: 1}
+  symbolColor: 5
+  backgroundColor: 8

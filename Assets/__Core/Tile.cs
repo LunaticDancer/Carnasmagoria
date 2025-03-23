@@ -30,8 +30,8 @@ public class Tile : MonoBehaviour
     public void Init(Vector2Int position)
     {
         gridPosition = position;
-        SetColor(WorldController.Instance.LevelGenerator.currentLevel.BackgroundColor);
-        SetCharacterColor(WorldController.Instance.LevelGenerator.currentLevel.BackgroundColor);
+        SetColor(DataController.Instance.GetColor(WorldController.Instance.LevelGenerator.currentLevel.BackgroundColor));
+        SetCharacterColor(DataController.Instance.GetColor(WorldController.Instance.LevelGenerator.currentLevel.BackgroundColor));
         UpdateVisuals();
     }
 
@@ -44,8 +44,8 @@ public class Tile : MonoBehaviour
             if (priorityEntity)
             {
                 SetCharacter(priorityEntity.Symbol);
-                SetColor(priorityEntity.BackgroundColor);
-                SetCharacterColor(priorityEntity.SymbolColor);
+                SetColor(DataController.Instance.GetColor( priorityEntity.BackgroundColor));
+                SetCharacterColor(DataController.Instance.GetColor(priorityEntity.SymbolColor));
             }
             else
             {
@@ -64,7 +64,7 @@ public class Tile : MonoBehaviour
 
     public void SetAsRandomGroundTile()
     {
-        SetColor(WorldController.Instance.LevelGenerator.currentLevel.FloorColor);
+        SetColor(DataController.Instance.GetColor(WorldController.Instance.LevelGenerator.currentLevel.FloorColor));
         SetCharacterColor(new Color(0.5f, 0.25f, 0.25f));
         foreach (EmptyTileSigns sign in emptyTileCharacters)
         {

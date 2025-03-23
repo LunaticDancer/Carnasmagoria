@@ -41,7 +41,7 @@ public class LevelGenerator : MonoBehaviour
     {
         bool[,] layout = new bool[1,1]; // true = floor, false = wall
         currentLevel = level;
-        Camera.main.backgroundColor = level.BackgroundColor;
+        Camera.main.backgroundColor = DataController.Instance.GetColor(level.BackgroundColor);
         Vector2Int playerSpawnCoordinates = new Vector2Int(Mathf.FloorToInt(level.LevelSize.x / 2),
             Mathf.FloorToInt(level.LevelSize.x / 2));
 

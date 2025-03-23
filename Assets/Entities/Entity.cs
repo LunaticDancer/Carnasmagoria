@@ -18,8 +18,8 @@ public class Entity : MonoBehaviour
     [SerializeField] private string nameLabel = "Entity";
     [SerializeField] [TextArea(3, 20)] private string flavorDescription = "";
     [SerializeField] private char symbol = '#';
-    [SerializeField] private Color symbolColor = Color.red;
-    [SerializeField] private Color backgroundColor = Color.magenta;     // magenta = no color, would be null if the Color class was nullable
+    [SerializeField] private ColorPalette symbolColor = ColorPalette.BloodDark;
+    [SerializeField] private ColorPalette backgroundColor = ColorPalette.NONE;
 
     [HideInInspector] public Tile CurrentTile { get => currentTile; }
     [HideInInspector] public bool IsDestructible { get => isDestructible; }
@@ -30,8 +30,8 @@ public class Entity : MonoBehaviour
     [HideInInspector] public int RenderPriority { get => renderPriority; }
     [HideInInspector] public string NameLabel { get => name; }
     [HideInInspector] public char Symbol { get => symbol; }
-    [HideInInspector] public Color SymbolColor { get => symbolColor; }
-    [HideInInspector] public Color BackgroundColor { get => backgroundColor; }
+    [HideInInspector] public ColorPalette SymbolColor { get => symbolColor; }
+    [HideInInspector] public ColorPalette BackgroundColor { get => backgroundColor; }
 
     public void SetTile(Tile newTile)
     {

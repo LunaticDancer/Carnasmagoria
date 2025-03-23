@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,11 +53,12 @@ MonoBehaviour:
   nameLabel: Wall of Flesh
   flavorDescription: A massive prism of flesh, noticeably harder on the inside.
   symbol: 35
-  symbolColor: {r: 0.5019608, g: 0.2509804, b: 0.2509804, a: 1}
-  backgroundColor: {r: 0.2509804, g: 0.1254902, b: 0.1254902, a: 1}
+  symbolColor: 7
+  backgroundColor: 8
   isUnderPlayerControl: 0
   currentHealth: 20
   maxHealth: 20
+  visionRange: 1
   turnTimer: 100
   hostilityMode: 0
   alliedToCreaturesWith: 

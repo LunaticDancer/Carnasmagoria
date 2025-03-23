@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -53,8 +54,8 @@ MonoBehaviour:
   flavorDescription: A photosensitive sensory apparatus, as standard as it gets.
     Allows the perception of shapes and colors.
   symbol: 91
-  symbolColor: {r: 0.25, g: 0.1875, b: 0.1875, a: 1}
-  backgroundColor: {r: 1, g: 0, b: 1, a: 1}
+  symbolColor: 1
+  backgroundColor: 0
   mass: 1
   attachedTo: {fileID: 0}
   bodyStructureCost: 1
