@@ -9,7 +9,7 @@ public class BasicMovementAbility : Ability
 	{
 		WorldController.Instance.TileGridController.MoveEntity(target, caster);
 		WorldController.Instance.TileGridController.UpdateGridVisuals();
-		caster.TriggerAllAbilitiesInGroup(AbilityTriggers.OnMove);
+		EventHandler.Instance.SignalAbilityUsed(AbilityTriggers.OnMove, caster);
 		caster.ChangeTurnTimer(timeCost);
 		return true;
 	}

@@ -82,7 +82,7 @@ public class Creature : Entity
     }
     public void TakeTurn()
     {
-        TriggerAllAbilitiesInGroup(Ability.AbilityTriggers.OnTurnStart);
+        EventHandler.Instance.SignalAbilityUsed(Ability.AbilityTriggers.OnTurnStart, this);
         if (isUnderPlayerControl)
         {
             Debug.Log("Player started their turn.");
@@ -100,14 +100,6 @@ public class Creature : Entity
                 // no active abilities = skip the turn
                 turnTimer = 1000;
             }
-        }
-    }
-
-    public void TriggerAllAbilitiesInGroup(Ability.AbilityTriggers trigger)
-    {
-        foreach (Ability ability in abilityTriggerGroups[(int)trigger].abilities)
-        {
-            ability.Cast(this, CurrentTile);
         }
     }
 
@@ -190,7 +182,7 @@ public class Creature : Entity
     // creating distinction between healing and dealing damage in case of future effects that care only about one or the other
     public void DealDamage(int amount)
     {
-        TriggerAllAbilitiesInGroup(Ability.AbilityTriggers.OnReceiveDamage);
+        EventHandler.Instance.SignalAbilityUsed(Ability.AbilityTriggers.OnReceiveDamage, this);
         CurrentHealth = CurrentHealth - amount;
     }
 
@@ -201,7 +193,7 @@ public class Creature : Entity
 
     protected void Die()
     {
-        TriggerAllAbilitiesInGroup(Ability.AbilityTriggers.OnDeath);
+        EventHandler.Instance.SignalAbilityUsed(Ability.AbilityTriggers.OnDeath, this);
     }
 
     public void ChangeTurnTimer(float amount)
@@ -223,7 +215,7 @@ public class Creature : Entity
 
     public void Interacted(Creature interactor)
     {
-        TriggerAllAbilitiesInGroup(Ability.AbilityTriggers.OnInteracted);
+        EventHandler.Instance.SignalAbilityUsed(Ability.AbilityTriggers.OnInteracted, interactor);
     }
 
     public Creature TryInteract()

@@ -62,4 +62,9 @@ public class Ability : ScriptableObject
     {
         return true; // always overwrite
     }
+
+    public virtual void ReactToEvent(Ability.AbilityTriggers trigger, Entity entity)
+    {
+
+    }
 }
