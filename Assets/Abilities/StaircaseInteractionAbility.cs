@@ -9,6 +9,14 @@ public class StaircaseInteractionAbility : Ability
 
 	[HideInInspector] public LevelData TargetLevel { get => targetLevel; }
 
+	public override void ReactToEvent(AbilityTriggers trigger, Entity entity)
+	{
+		if (trigger == AbilityTriggers.OnInteracted)
+		{
+			Cast((Creature)entity, null);
+		}
+	}
+
 	public override bool Cast(Creature caster, Tile target)
 	{
 		if (targetLevel)

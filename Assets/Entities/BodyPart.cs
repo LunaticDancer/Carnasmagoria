@@ -20,6 +20,8 @@ public class BodyPart : Item
     public void Attach(Entity target)
     {
         EventHandler.Instance.OnAbilityUsed += NotifyAbilitiesOfEvent;
+        NotifyAbilitiesOfEvent(Ability.AbilityTriggers.OnAttachThisBodyPart, this);
+        EventHandler.Instance.SignalAbilityUsed(Ability.AbilityTriggers.OnAttachAnyBodyPart, this);
         attachedTo = target;
         foreach (BodyPart part in dependentBodyParts)
         {
@@ -29,6 +31,8 @@ public class BodyPart : Item
 
     public void Detach(Tile targetTile)
     {
+        EventHandler.Instance.SignalAbilityUsed(Ability.AbilityTriggers.OnDetachAnyBodyPart, this);
+        NotifyAbilitiesOfEvent(Ability.AbilityTriggers.OnDetachThisBodyPart, this);
         EventHandler.Instance.OnAbilityUsed -= NotifyAbilitiesOfEvent;
         attachedTo = null;
         SetTile(targetTile);
@@ -40,6 +44,11 @@ public class BodyPart : Item
         {
             a.ReactToEvent(trigger, entity);
         }
+    }
+
+    public Creature GetCreature()
+    {
+        return GetComponentInParent<Creature>();
     }
 
     public List<Ability> GatherAbilitiesRecursive()

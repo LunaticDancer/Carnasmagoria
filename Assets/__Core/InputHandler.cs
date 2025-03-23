@@ -30,15 +30,7 @@ public class InputHandler : MonoBehaviour
         {
             if (Input.GetButtonDown("Interact"))
             {
-                Creature interactiveEntity = playerAbilityCaster.TryInteract();
-                if (interactiveEntity)
-                {
-                    interactiveEntity.Interacted(playerAbilityCaster);
-                }
-                else
-                {
-                    Debug.Log("Nothing to interact with here.");
-                }
+                playerAbilityCaster.TryInteract();
             }
             else
             {

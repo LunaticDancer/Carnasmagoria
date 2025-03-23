@@ -76,7 +76,6 @@ public class Creature : Entity
         InitBodyParts();
         availableAbilityList = GatherAllAbilities();
         SortAbilitiesIntoTriggerGroups();
-        InitVision();
         primaryCombatAbility = FindPrimaryCombatAbility();
         primaryMovementAbility = FindPrimaryMovementAbility();
     }
@@ -169,14 +168,12 @@ public class Creature : Entity
             part.Attach(this);
         }
     }
-
-    private void InitVision()
+    public void NotifyAbilitiesOfEvent(Ability.AbilityTriggers trigger, Entity entity)
     {
-        foreach (VisionAbility ability in abilityTriggerGroups[(int)Ability.AbilityTriggers.OnAttachThisBodyPart].abilities)
+        foreach (Ability a in availableAbilityList)
         {
-            ability.Cast(this, CurrentTile);
+            a.ReactToEvent(trigger, entity);
         }
-        
     }
 
     // creating distinction between healing and dealing damage in case of future effects that care only about one or the other
@@ -213,20 +210,12 @@ public class Creature : Entity
         visionRange = range;
     }
 
-    public void Interacted(Creature interactor)
-    {
-        EventHandler.Instance.SignalAbilityUsed(Ability.AbilityTriggers.OnInteracted, interactor);
-    }
-
-    public Creature TryInteract()
+    public void TryInteract()
     {
         foreach (Creature creature in CurrentTile.Entities)
         {
-            if (creature.abilityTriggerGroups[(int)Ability.AbilityTriggers.OnInteracted].abilities.Count > 0)
-            {
-                return creature;
-            }
+            creature.NotifyAbilitiesOfEvent(Ability.AbilityTriggers.OnInteracted, this);
         }
-        return null;
+        return;
     }
 }

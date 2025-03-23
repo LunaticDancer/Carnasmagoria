@@ -18,6 +18,12 @@ public class LevelGenerator : MonoBehaviour
 
     public void MoveBetweenLevels(LevelData level, Creature player)
     {
+        StartCoroutine(ExecuteLevelMove(level, player));
+    }
+
+    private IEnumerator ExecuteLevelMove(LevelData level, Creature player)
+    {
+        yield return null;
         player.CurrentTile.DettachEntity(player);
         Vector2Int playerSpawnPoint = GenerateLevelLayout(level);
         Controller.TileGridController.AttachEntity(playerSpawnPoint, player);
