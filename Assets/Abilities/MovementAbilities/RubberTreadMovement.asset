@@ -16,8 +16,8 @@ MonoBehaviour:
   caresForCollision: 1
   range: 1
   timeCost: 1
+  isManuallyActivated: 1
   aimingMode: 1
-  triggerList: 00000000
   aiFlagList: 00000000
   resourceCosts:
   - ResourceType: 7

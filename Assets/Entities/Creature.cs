@@ -39,7 +39,7 @@ public class Creature : Entity
     [SerializeField] private List<BodyPart> bodyParts = new List<BodyPart>();
 
     private List<Ability> availableAbilityList = new List<Ability>();
-    private AbilityTriggerGroup[] abilityTriggerGroups = null;
+    private List<Ability> availableActiveAbilityList = new List<Ability>();
     private Ability primaryMovementAbility = null;
     private Ability primaryCombatAbility = null;
 
@@ -72,10 +72,9 @@ public class Creature : Entity
 
     public void Init()
     {
-        abilityTriggerGroups = new AbilityTriggerGroup[System.Enum.GetValues(typeof(Ability.AbilityTriggers)).Length];
         InitBodyParts();
-        availableAbilityList = GatherAllAbilities();
-        SortAbilitiesIntoTriggerGroups();
+		availableAbilityList = GatherAllAbilities();
+        FilterForActiveAbilities();
         primaryCombatAbility = FindPrimaryCombatAbility();
         primaryMovementAbility = FindPrimaryMovementAbility();
     }
@@ -94,7 +93,7 @@ public class Creature : Entity
         else
         {
             Debug.Log(NameLabel + " started their turn.");
-            if (abilityTriggerGroups[(int)Ability.AbilityTriggers.OnUse].abilities.Count == 0)
+            if (availableActiveAbilityList.Count == 0)
             {
                 // no active abilities = skip the turn
                 turnTimer = 1000;
@@ -119,26 +118,18 @@ public class Creature : Entity
         return result;
     }
 
-    private void SortAbilitiesIntoTriggerGroups()
-    {
-		for (int i = 0; i < abilityTriggerGroups.Length; i++)
-		{
-            abilityTriggerGroups[i] = new AbilityTriggerGroup();
-            abilityTriggerGroups[i].trigger = (Ability.AbilityTriggers)i;
-            abilityTriggerGroups[i].abilities = new List<Ability>();
-            foreach (Ability ability in availableAbilityList)
-            {
-                if (System.Array.Exists(ability.TriggerList, element => element.Equals((Ability.AbilityTriggers)i)))
-                {
-                    abilityTriggerGroups[i].abilities.Add(ability);
-                }
-            }
-		}
-    }
+    private void FilterForActiveAbilities()
+	{
+        foreach (Ability a in availableAbilityList)
+        {
+            if (a.IsManuallyActivated)
+                availableActiveAbilityList.Add(a);
+        }
+	}
 
     private Ability FindPrimaryMovementAbility()
     {
-        foreach (Ability ability in abilityTriggerGroups[(int)Ability.AbilityTriggers.OnUse].abilities)
+        foreach (Ability ability in availableActiveAbilityList)
         {
             if (System.Array.Exists(ability.AiFlagList, element => element is Ability.AbilityAiFlags.MovesSelf)) // if is a movement ability
             {
@@ -150,7 +141,7 @@ public class Creature : Entity
 
     private Ability FindPrimaryCombatAbility()
     {
-        foreach (Ability ability in abilityTriggerGroups[(int)Ability.AbilityTriggers.OnUse].abilities)
+        foreach (Ability ability in availableActiveAbilityList)
         {
             if (System.Array.Exists(ability.AiFlagList, element => element is Ability.AbilityAiFlags.Damages))
             {

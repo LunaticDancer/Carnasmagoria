@@ -44,8 +44,8 @@ public class Ability : ScriptableObject
     [SerializeField] protected bool caresForCollision = false;
     [SerializeField] protected int range = 1;
     [SerializeField] protected float timeCost = 1; // 0 time cost abilities don't end the turn
+    [SerializeField] protected bool isManuallyActivated = false;
     [SerializeField] protected AimingModes aimingMode = AimingModes.NoAiming;
-    [SerializeField] protected AbilityTriggers[] triggerList = { };
     [SerializeField] protected AbilityAiFlags[] aiFlagList = { };
     [SerializeField] protected ResourceCost[] resourceCosts = null;
 
@@ -54,7 +54,7 @@ public class Ability : ScriptableObject
     [HideInInspector] public int Range { get => range; }
     [HideInInspector] public float TimeCost { get => timeCost; }
     [HideInInspector] public AimingModes AimingMode { get => aimingMode; }
-    [HideInInspector] public AbilityTriggers[] TriggerList { get => triggerList; }
+    [HideInInspector] public bool IsManuallyActivated { get => isManuallyActivated; }
     [HideInInspector] public AbilityAiFlags[] AiFlagList { get => aiFlagList; }
     [HideInInspector] public ResourceCost[] ResourceCosts { get => resourceCosts; }
 
